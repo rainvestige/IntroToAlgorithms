@@ -1,12 +1,13 @@
 # coding=utf-8
 
-def insert_sort(lst):
+def insert_sort(lst, is_incre=True):
     """Insert Sort
 
     Use insert sort to sort the list in place.
 
     Args:
         lst: the list to be sorted.
+        is_incre: the sort order is increasing
 
     Returns:
         the sorted list.    
@@ -18,17 +19,27 @@ def insert_sort(lst):
         # Insert lst[j] into the sorted sequence lst[1...j-1].
         # `i`: sorted sequence index (from right to left).
         i = j - 1
-        while (i >= 0) & (lst[i] > key):
-            lst[i+1] = lst[i]
-            i = i - 1
-        lst[i+1] = key
+        if is_incre:
+            while (i >= 0) & (lst[i] > key):
+                lst[i+1] = lst[i]
+                i = i - 1
+            lst[i+1] = key
+        else:
+            while (i >= 0) & (lst[i] < key):
+                lst[i+1] = lst[i]
+                i = i - 1
+            lst[i+1] = key
+            
 
     return lst
 
 
 if __name__ == '__main__':
-    A = [5, 2, 4, 6, 1, 3, 12, 487, 8, -1]
+    A = [31, 41, 59, 26, 41, 58]
     print('A = {}'.format(A))
     sorted_A = insert_sort(A)
-    print('Sorted A = {}'.format(sorted_A))
+    print('Sorted A by increasing order = {}'.format(sorted_A))
+    insert_sort(A, False)
+    print('Sorted A by decreasing order= {}'.format(A))
+
 
